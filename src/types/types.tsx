@@ -7,4 +7,6 @@ export type Todo = {
 export type TodosContextValue = {
 	todos: Todo[],
 	addTodo: (arg0: Todo) => void
+	completeTodo: (id: number) => void
+	deleteTodo: (id: number) => void
 }
