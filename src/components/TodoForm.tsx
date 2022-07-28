@@ -1,9 +1,11 @@
 import React, { useRef } from 'react'
+import { Todos } from '../store/TodoContext'
 
 import { Todo } from '../types/types'
 
 const TodoForm = () => {
     const todoInputRef = useRef<HTMLInputElement>(null)
+    const {addTodo} = Todos()
 
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -12,10 +14,12 @@ const TodoForm = () => {
 
         const todoObj: Todo = {
             title: todoTitle,
-            done: false
+            done: false,
+            id: Math.random() // not really unique but for personal project is fine
         }
 
         todoInputRef!.current!.value = ''
+        addTodo(todoObj)
     }
 
   return (
