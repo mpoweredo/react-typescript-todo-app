@@ -12,6 +12,10 @@ const TodoForm = () => {
 
         const todoTitle: string = todoInputRef.current?.value!
 
+        if (todoTitle.trim() === '') {
+            return
+        }
+
         const todoObj: Todo = {
             title: todoTitle,
             done: false,
