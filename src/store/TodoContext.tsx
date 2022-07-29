@@ -25,14 +25,30 @@ export const TodoContextProvider = ({ children }: PropsWithChildren) => {
 		});
 	};
 
-    const deleteTodo = (id: number) => {
-        setTodos(prevTodos => {
-            return prevTodos.filter(todo => todo.id !== id)
-        })
-    }
+	const deleteTodo = (id: number) => {
+		setTodos(prevTodos => {
+			return prevTodos.filter(todo => todo.id !== id);
+		});
+	};
+
+	const editTodo = (id: number, newTitle: string) => {
+		setTodos(prevTodos => {
+			return prevTodos.map(todo => {
+				if (todo.id === id) {
+					return {
+						...todo,
+						title: newTitle,
+					};
+				}
+				return todo;
+			});
+		});
+	};
 
 	return (
-		<TodoContext.Provider value={{ todos, addTodo, completeTodo, deleteTodo }}>{children}</TodoContext.Provider>
+		<TodoContext.Provider value={{ todos, addTodo, completeTodo, deleteTodo, editTodo }}>
+			{children}
+		</TodoContext.Provider>
 	);
 };
 
